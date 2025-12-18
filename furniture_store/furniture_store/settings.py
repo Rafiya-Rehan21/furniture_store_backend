@@ -32,6 +32,8 @@ DEBUG = os.getenv("DEBUG") == "True"
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'authentication.User'
+
 
 # Application definition
 
@@ -44,7 +46,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'rest_framework',
-    'corsheaders',    
+    'corsheaders',
+    'authentication',
+    'product',     
+    'order',
+    'cart',    
 ]
 
 MIDDLEWARE = [
