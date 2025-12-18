@@ -1,0 +1,42 @@
+# Python compiled files
+*.pyc
+*.pyo
+__pycache__/
+*.pyd
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+
+# Django
+*.log
+media/
+staticfiles/
+*.pot
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.swp
+
+# Docker
+*.env
+docker-compose.override.yml
+docker-compose.override.*.yml
+
+# Python testing / coverage
+.pytest_cache/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+
+# Packages / distribution
+*.egg-info/
+dist/
+build/
+
+# OS / system files
+*.DS_Store
