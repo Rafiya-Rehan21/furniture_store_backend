@@ -43,18 +43,3 @@ class ProductVariant(models.Model):
     def __str__(self):
         return f"{self.title} ({self.product.title})"
 
-
-class RelatedProduct(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="related_products")
-    related = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="related_to")
-
-    def __str__(self):
-        return f"{self.product.title} -> {self.related.title}"
-
-
-class BuyTogether(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="buy_together")
-    item = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="part_of_bundle")
-
-    def __str__(self):
-        return f"{self.product.title} buy with {self.item.title}"
