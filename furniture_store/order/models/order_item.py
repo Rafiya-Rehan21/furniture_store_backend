@@ -53,3 +53,4 @@ class OrderItem(models.Model):
     def total_price(self):
         unit_price = self.price or self.product.price
         return unit_price * self.quantity
+    

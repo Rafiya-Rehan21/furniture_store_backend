@@ -1,0 +1,21 @@
+from rest_framework.exceptions import ValidationError
+from cart.models.cart import Cart
+
+
+def get_or_create_cart(request):
+    if request.user.is_authenticated:
+        cart, _ = Cart.objects.get_or_create(
+            user=request.user,
+            is_active=True
+        )
+        return cart
+
+    guest_id = request.headers.get("X-GUEST-ID")
+    if not guest_id:
+        raise ValidationError("X-GUEST-ID header is required")
+
+    cart, _ = Cart.objects.get_or_create(
+        guest_id=guest_id,
+        is_active=True
+    )
+    return cart
