@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
-from authentication.models import Address  
+
 
 class Order(models.Model):
     STATUS_PENDING = 'pending'
@@ -23,13 +23,13 @@ class Order(models.Model):
         on_delete=models.CASCADE,
         related_name='orders'
     )
-    address = models.ForeignKey(
-        Address,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='orders'
-    )
+    
+    street_address = models.CharField(max_length=255, null=True, blank=True)
+    city = models.CharField(max_length=100, null=True, blank=True)
+    state = models.CharField(max_length=100, null=True, blank=True)
+    postal_code = models.CharField(max_length=20, null=True, blank=True)
+    country = models.CharField(max_length=100, null=True, blank=True)
+    
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
@@ -39,5 +39,13 @@ class Order(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self):
         return f"Order #{self.id} by {self.user.email}"
+    
+    @property
+    def full_address(self):
+        """Returns formatted full address"""
+        return f"{self.street_address}, {self.city}, {self.state} {self.postal_code}, {self.country}"
