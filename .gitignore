@@ -17,7 +17,6 @@ staticfiles/
 *.pot
 
 # IDEs / Editors
-.vscode/
 .idea/
 *.swp
 
@@ -40,3 +39,5 @@ build/
 
 # OS / system files
 *.DS_Store
+config.bat
+node_modules
