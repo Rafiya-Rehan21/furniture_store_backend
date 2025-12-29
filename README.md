@@ -5,8 +5,10 @@ It is **dockerized** and uses **PostgreSQL 17** for development.
 
 ## Features
 
-* User authentication (JWT-based login/registration) 
-* Product, Category, Order, and Cart management
+* User authentication and registration with **JWT-based login**
+* **Product and Category API CRUD** endpoints
+* **Cart and Order management** including add/update/remove items, guest cart support, and order checkout
+* **Email integration** to notify users on order creation
 * REST API endpoints for frontend consumption
 * Dockerized development environment
 
@@ -27,7 +29,7 @@ git clone <repo-url>
 cd furniture_store_backend
 ```
 
-2. **Copy `.env.example` to `.env`** (if you have environment variables)
+2. Create a .env file in the project root with required environment variables (e.g., database credentials, email settings)
 
 3. **Build and start Docker containers:**
 
