@@ -8,6 +8,8 @@ from django.shortcuts import get_object_or_404
 from order.models import Order, OrderItem
 from cart.models import Cart
 from order.serializers import CheckoutSerializer, OrderSerializer
+from order.services.email import send_order_confirmation_email
+
 
 
 class CheckoutViewSet(viewsets.GenericViewSet):
@@ -88,7 +90,9 @@ class CheckoutViewSet(viewsets.GenericViewSet):
                     cart_item.cart = None
                     cart_item.price = product_price  
                     cart_item.save()
-                
+                    
+                send_order_confirmation_email(order)
+
                 if guest_id and cart.guest_id:
                     cart.is_active = False
                     cart.save()
